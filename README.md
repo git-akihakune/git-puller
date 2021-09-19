@@ -1,6 +1,6 @@
 # A script for automating pulling for local git repositories
 ## Why?
-Developers and bug hunters usually work with lots of different tools and repositories, and keep them up-to-date is a must. Therefore, here're the scripts written in different languages that help automating that processes.
+Developers and bug hunters usually work with lots of different tools and repositories, and keep them up-to-date is a must. Therefore, here're the scripts written in different languages that help automating that boring process.
 
 ## Usage
 Simply clone, copy-paste, or download via HTTPS, the script you want to use, then execute it.

@@ -1,6 +1,6 @@
-# A script for automating pulling for local git repositories
+# Scripts for recursively pulling git repositories
 ## Why?
-Developers and bug hunters usually work with lots of different tools and repositories, and keep them up-to-date is a must. Therefore, here're the scripts written in different languages that help automating that boring process.
+Developers usually work with lots of different tools and repositories, and keep them up-to-date is a must, but a tedious task. Therefore, here're the scripts written in different languages that help automating that boring process.
 
 ## Usage
 Simply clone, copy-paste, or download via HTTPS, the script you want to use, then execute it.
@@ -9,10 +9,6 @@ $ git clone https://github.com/git-akihakune/git-puller.git
 $ cd git-puller
 ```
 Then, based on your chosen language:
-```bash
-# C++
-$ g++ pull.cpp -o pull && pull
-```
 ```bash
 # python
 $ ./pull.py

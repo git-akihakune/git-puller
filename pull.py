@@ -1,5 +1,9 @@
 #!/usr/bin/env python3
 
+# Python script for recursively pulling git repositories
+# Help: python pull.py --help
+# Aki Hakune, Semtember 19th 2021
+
 import logging
 import argparse
 import os
@@ -26,7 +30,7 @@ parser.add_argument('-i', '--interactive', dest='interactive', default=False,
 parser.add_argument('-c', '--command', metavar='', default='git pull',
                     help='Command to execute in within repositories.')
 parser.add_argument('-d', '--directory', metavar='',
-                    default=f'{os.getcwd()}', help='Root directory to recursively pull.')
+                    default=[f'{os.getcwd()}'], nargs='+', help='Top directory to recursively pull.')
 parser.add_argument('-e', '--exclude', metavar='', default=list(),
                     nargs='*', help='Name of repositories to NOT pullling.')
 ### End global variables ###
@@ -39,23 +43,30 @@ if __name__ == '__main__':
     if args.interactive:
         logging.info('Interactive mode enabled.')
         command = input(
-            'Enter command to execute (default: git pull): ') or 'git pull'
+            'Command to execute (default: git pull): ') or 'git pull'
         directories = [str(folder) for folder in input(
-            'Enter root directory(ies) for execution (default: current): ')] or f'{os.getcwd()}'
+            'Root directories for execution (default: current): ')] or [f'{os.getcwd()}']
         exclude = [str(folder) for folder in input(
-            'Enter repostories to exclude from this script (default: none): ')] or None
+            'Repostories to exclude from this script (default: none): ')] or None
     else:
         command = args.command
         directories = args.directory
         exclude = args.exclude
 
-    for directory in list(directories.split()):
-        for root, dirs, files in os.walk(directory, topdown=True):
+    print(f"""Running with arguments:
+    Executing directory: {directories}
+    Executing command: {command}
+    Excluding: {exclude}""")
 
-            if '.git' in dirs and root.split('/')[-1] not in exclude:
-                logging.info(f"Working on {root}")
-                process = subprocess.Popen(list(command.split()), stdout=subprocess.PIPE)
-                output = process.communicate()[0]
-                logging.info(output.decode('utf-8').rstrip('\n'))
+    if (input('Continue? [y/n] ') not in ['n', 'N', 'no', 'No']):
 
-            dirs[:] = [d for d in dirs if d not in ['.git']]
+        for directory in directories:
+            for root, dirs, files in os.walk(directory, topdown=True):
+
+                if '.git' in dirs and root.split('/')[-1] not in exclude:
+                    logging.info(f"Working on {root}")
+                    process = subprocess.Popen(list(command.split()), stdout=subprocess.PIPE)
+                    output = process.communicate()[0]
+                    logging.info(output.decode('utf-8').rstrip('\n'))
+
+                dirs[:] = [d for d in dirs if d not in ['.git']]

@@ -4,6 +4,9 @@ Developers usually work with lots of different tools and repositories, and keep 
 
 ## Usage
 Simply clone, copy-paste, or download via HTTPS, the script you want to use, then execute it.
+
+![](assets/demo.gif)
+
 ```bash
 $ git clone https://github.com/git-akihakune/git-puller.git
 $ cd git-puller

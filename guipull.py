@@ -49,11 +49,10 @@ def recursivePull(directories: List[str], exclude: List[str], command: str) -> N
             os.chdir(abs_path)
             ack = 0
         except Exception as details:
-            print('problem to get to the path '+r_path+' (0001) : ' + str(details))
+            print('[%] Problem to get to the path '+r_path+' (0001) : ' + str(details))
         return ack
 
-    print(f"[@] Working with configurations:\n- Executing directories: {directories}\n- Excluding: {exclude}\n- Command: {command}\n")
-    print("[!] Operation started\n")
+    print(f"[@] Working with configurations:\n- Executing directories: {directories}\n- Excluding: {exclude}\n- Command: {command}\n\n[!] Operation started\n")
 
     for directory in directories:
         for root, dirs, files in os.walk(directory, topdown=True):
@@ -65,7 +64,7 @@ def recursivePull(directories: List[str], exclude: List[str], command: str) -> N
 
             dirs[:] = [d for d in dirs if d not in ['.git']]
         
-    print("[+] Operation successfully completed")
+    print("[+] Operation successfully completed\n")
     
 
 def main():
@@ -77,7 +76,7 @@ def main():
 
         command = values[0]
         directories = values[1].split()
-        exclude = values[2]
+        exclude = values[2].split()
         recursivePull(directories, exclude, command)
         
     window.close()

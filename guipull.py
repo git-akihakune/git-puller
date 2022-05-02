@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 
 ## PySimpleGUI installing instructions:
-## Run one if these commands:
+## Run one of these commands:
 ## - py -m pip install pysimplegui
 ## - pip install pysimplegui
 ## - pip3 install pysimplegui
